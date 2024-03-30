@@ -19,7 +19,7 @@ public final class Matrix {
     }
 
     public BigInteger[][] getData() {
-        return data;
+        return data.clone();
     }
 
     public Matrix multiply(Matrix b) {

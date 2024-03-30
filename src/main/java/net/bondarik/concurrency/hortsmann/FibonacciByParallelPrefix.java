@@ -11,7 +11,7 @@ public class FibonacciByParallelPrefix {
         Arrays.parallelSetAll(nums, Matrix::new);
         Arrays.parallelPrefix(nums, Matrix::multiply);
 
-        System.out.println(nums[N - 1]);
+        System.out.println(nums[N - 1]);//N-е число Фибоначи
     }
 
 }

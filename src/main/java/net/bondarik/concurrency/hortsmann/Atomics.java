@@ -3,7 +3,6 @@ package net.bondarik.concurrency.hortsmann;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAccumulator;
 import java.util.concurrent.atomic.LongAdder;
@@ -19,7 +18,7 @@ public class Atomics {
         Long start1 = System.currentTimeMillis();
         List<Runnable> tasks = new ArrayList<>(1000);
         for (int i = 0; i < 1000; i++) {
-            tasks.add(buildAddingTask());
+            tasks.add(buildAtomicLongTask());
         }
 
         ExecutorService executor = Executors.newFixedThreadPool(16);
@@ -50,18 +49,10 @@ public class Atomics {
 
     }
 
-    private static Runnable buildAddingTask() {
+    private static Runnable buildAtomicLongTask() {
         return () -> {
             for (int i = 0; i < 100_000; i++) {
                 atomicLong.addAndGet(1);
-            }
-        };
-    }
-
-    private static Runnable buildAdderTask() {
-        return () -> {
-            for (int i = 0; i < 100_000; i++) {
-                adder.add(1);
             }
         };
     }

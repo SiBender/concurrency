@@ -24,7 +24,7 @@ public class SetOfWordsInFiles {
 
         List<Runnable> tasks = files.stream().map(SetOfWordsInFiles::buildTask).collect(Collectors.toList());
 
-        ExecutorService executor = Executors.newFixedThreadPool(8);
+        ExecutorService executor = Executors.newFixedThreadPool(16);
         tasks.forEach(executor::submit);
         executor.shutdown();
 
